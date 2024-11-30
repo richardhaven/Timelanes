@@ -3,7 +3,7 @@ library timelanes;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart' as international;
+import 'package:intl/intl.dart' as international; // this package has a TextDirection which interferes with material.dart
 
 enum EventAlignment { earlyPartial, latePartial, full }
 
@@ -175,7 +175,7 @@ class Timelanes extends StatelessWidget {
     }
 
     Widget result = Container(
-      padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+      padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
       width: laneWidth,
       height: laneHeight,
       clipBehavior: Clip.none,
@@ -248,7 +248,7 @@ class Timelanes extends StatelessWidget {
         //  TODO: intermediate ticks
         Divider(height: calculateTimelineHeight()),
         Padding(
-          padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+          padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(earliestDateText),
             Text(latestDateText),
@@ -342,7 +342,7 @@ Widget createTimePeriod(
   if (title == null) {
     return SizedBox(width: width, height: rowHeight, child: ColoredBox(color: color));
   } else {
-    Size titleSize = _textSize(title, titleStyle ?? TextStyle());
+    Size titleSize = _textSize(title, titleStyle ?? const TextStyle());
     if (titleSize.width > width) {
       eventAlignment = EventAlignment.full;
     }
@@ -362,8 +362,6 @@ Widget createTimePeriod(
     return SizedBox(width: width, height: rowHeight, child: box);
   }
 }
-
-// these two cannot move to timelanes_utils.dart as intl/intl.dart interferes with TextDirection
 
 Size _textSize(String text, TextStyle style, {double width = double.infinity}) {
   final TextPainter textPainter = TextPainter(

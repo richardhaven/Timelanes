@@ -440,7 +440,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ]),
           ]),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -462,7 +462,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: const Text("Clear Elements")),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ],
       ),
     );
@@ -577,7 +577,7 @@ class _MyHomePageState extends State<MyHomePage> {
               end: event.end!,
               pixelsPerMinute: pixelsPerMinute,
               title: event.title,
-              titleStyle: TextStyle(color: Colors.white),
+              titleStyle: const TextStyle(color: Colors.white),
               eventAlignment: eventAlignment);
           return Tooltip(
               message: "800 - 1806",
@@ -725,11 +725,8 @@ class _TimeEventSpecificationState extends State<TimeEventSpecification> {
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             onChanged: (String newPriority) {
-              int? priorityValue = int.tryParse(newPriority);
-              if (priorityValue == null) {
-                priorityValue = 100;
-              }
-              this.widget.onPriorityChange(priorityValue!);
+              int priorityValue = int.tryParse(newPriority) ?? 100;
+              this.widget.onPriorityChange(priorityValue);
             },
           ),
           TextField(
@@ -740,11 +737,8 @@ class _TimeEventSpecificationState extends State<TimeEventSpecification> {
             keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true),
             inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^[\-0-9]+.?[0-9]*'))],
             onChanged: (String newOffset) {
-              double? offsetValue = double.tryParse(newOffset);
-              if (offsetValue == null) {
-                offsetValue = 0;
-              }
-              this.widget.onLeftOffsetChange?.call(offsetValue!);
+              double offsetValue = double.tryParse(newOffset) ?? 0;
+              this.widget.onLeftOffsetChange?.call(offsetValue);
             },
           ),
           Padding(
