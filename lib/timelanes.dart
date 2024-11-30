@@ -3,7 +3,7 @@ library timelanes;
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:timelanes/timelanes_utils.dart';
+import 'package:intl/intl.dart' as international;
 
 enum EventAlignment { earlyPartial, latePartial, full }
 
@@ -122,9 +122,7 @@ class Timelanes extends StatelessWidget {
 
     for (int index = 0; index < lanesAbove.length; index++) {
       if (this.showSwimlanes) {
-        rows.add(const Divider(
-          height: _dividerHeight,
-        ));
+        rows.add(const Divider(height: _dividerHeight));
       }
 
       List<TimeEvent> laneEvents = eventsForLane(this.events, index);
@@ -136,9 +134,7 @@ class Timelanes extends StatelessWidget {
 
     rows.add(buildTimeline(laneWidth));
     if (this.showSwimlanes) {
-      rows.add(const Divider(
-        height: _dividerHeight,
-      ));
+      rows.add(const Divider(height: _dividerHeight));
     }
 
     for (int index = 0; index < lanesBelow.length; index++) {
@@ -151,9 +147,7 @@ class Timelanes extends StatelessWidget {
       rows.add(lane);
 
       if (this.showSwimlanes) {
-        rows.add(const Divider(
-          height: _dividerHeight,
-        ));
+        rows.add(const Divider(height: _dividerHeight));
       }
 
       laneIndex++;
@@ -394,4 +388,20 @@ Size _maxTextSize(List<String>? texts, TextStyle style) {
     }
   }
   return Size(width, height);
+}
+
+String formatDateTime(DateTime dateTime, Duration scope, String? format) {
+  if (format == null) {
+    if (scope < const Duration(days: 1)) {
+      format = "hh:mm";
+    } else if (scope < const Duration(days: 365)) {
+      format = "dd MMMM yy";
+    } else if (scope < const Duration(days: 1500)) {
+      format = "MMMM yyyy";
+    } else {
+      format = "yyyy";
+    }
+  }
+  international.DateFormat dateFormatter = international.DateFormat(format);
+  return dateFormatter.format(dateTime);
 }
