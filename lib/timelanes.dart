@@ -116,7 +116,12 @@ class Timelanes extends StatelessWidget {
     Size maxLanesBelowTitleSize = _maxTextSize(this.lanesBelow, this.laneTitleStyle);
     double maxLaneTitleWidth = max(maxLanesAboveTitleSize.width, maxLanesBelowTitleSize.width);
 
-    createEventWidgets(this.events, (constraints.maxWidth - maxLaneTitleWidth), maxLaneTitleWidth, laneHeight);
+    double remainingLaneWidth = constraints.maxWidth - maxLaneTitleWidth;
+    if (this.laneTitlePosition == TimelaneTitlePosition.both) {
+      remainingLaneWidth = constraints.maxWidth - (maxLaneTitleWidth * 2);
+    }
+
+    createEventWidgets(this.events, remainingLaneWidth, maxLaneTitleWidth, laneHeight);
 
     List<Widget> rows = List<Widget>.empty(growable: true);
 
