@@ -12,9 +12,6 @@ To any time scale
 
 ![](readme-example-2.jpg?raw=true)
 
-
-
-
 ## Usage
 
 In a builder, create a Timelanes with the names of the timelanes above and below the timeline, 
