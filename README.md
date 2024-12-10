@@ -14,10 +14,11 @@ To any time scale
 
 ## Usage
 
-In a builder, create a Timelanes with the names of the timelanes above and below the timeline, 
-the date range of the timeline itself, a fallback builder function (see below), and a set of TimeEvent instances. 
-Each of these instances has a date or date range, a timelane index, a title, a priority 
-(for handling overlapping widgets), a horizontal offset, and a builder function which returns a widget
+In a builder, as a descendant of a (text) Directionality ancestor (e.g. MaterialApp), create a Timelanes 
+with the names of the timelanes above and below the timeline, the date range of the timeline itself, 
+a fallback builder function (see below), and a set of TimeEvent instances. Each of these instances has 
+a date or date range, a timelane index, a title, a priority (for handling overlapping widgets), 
+a horizontal offset, and a builder function which returns a widget
 
 The builder function (either specific to a TimeEvent or the TimeLanes fallback) receives the event instance, 
 the height of the lane, the scale of pixels per minute, and an indication if the event's date range is 
