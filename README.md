@@ -32,44 +32,48 @@ and places each of these widgets in its timelane horizontally according to its T
 priority value determines which widgets is on top if they overlap. These widgets can have tooltips, mouse reactions,
 URL launchers, etc.
 ```dart
- return Expanded(child: Timelanes(
-    earliestDate: DateTime(1330),
-    latestDate: DateTime(1850),
-    lanesAbove: ["lane 1", "lane 2"],
-    lanesBelow: ["lane 3", "lane 4"],
-    events: [
-      TimeEvent(start: DateTime(300), end: DateTime(1230), title: "not shown: out of bounds", laneIndex: 0),
-      TimeEvent(
-          start: DateTime(1500),
-          title: "show a box",
+aWidget widget = Column(children: [
+  Expanded(
+    child: Timelanes(
+      earliestDate: DateTime(1330),
+      latestDate: DateTime(1850),
+      lanesAbove: ["lane 1", "lane 2"],
+      lanesBelow: ["lane 3", "lane 4"],
+      events: [
+        TimeEvent(start: DateTime(300), end: DateTime(1230), title: "not shown: out of bounds", laneIndex: 0),
+        TimeEvent(
+            start: DateTime(1500),
+            title: "show a box",
+            laneIndex: 3,
+            builder: (TimeEvent event, double maximumHeight, double pixelsPerMinute, EventAlignment eventAlignment) {
+              return Container(
+                height: maximumHeight,
+                width: maximumHeight,
+                color: Colors.orange,
+              );
+            }),
+        TimeEvent(
+          start: DateTime(1702),
+          end: DateTime(1860),
+          title: "show a bar",
           laneIndex: 3,
           builder: (TimeEvent event, double maximumHeight, double pixelsPerMinute, EventAlignment eventAlignment) {
-            return Container(
-              height: maximumHeight,
-              width: maximumHeight,
-              color: Colors.orange,
+            return createTimePeriod(
+              color: Colors.blueGrey,
+              rowHeight: maximumHeight,
+              start: event.start,
+              end: event.end!,
+              pixelsPerMinute: pixelsPerMinute,
+              title: event.title,
+              eventAlignment: eventAlignment,
             );
-          }),
-      TimeEvent(
-        start: DateTime(1702),
-        end: DateTime(1860),
-        title: "show a bar",
-        laneIndex: 3,
-        builder: (TimeEvent event, double maximumHeight, double pixelsPerMinute, EventAlignment eventAlignment) {
-          return createTimePeriod(
-            color: Colors.blueGrey,
-            rowHeight: maximumHeight,
-            start: event.start,
-            end: event.end!,
-            pixelsPerMinute: pixelsPerMinute,
-            title: event.title,
-            eventAlignment: eventAlignment,
-          );
-        },
-      ),
-    ],
-  ),
-);
+          },
+        ),
+      ],
+    ),
+  )
+]);
+
 ```
 ## Additional information
 This is a hobby project with no commitment for fixes, updates, or enhancements

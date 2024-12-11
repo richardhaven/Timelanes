@@ -10,7 +10,7 @@ import "usa_date_formatter.dart";
 
 const debounceDuration = Duration(milliseconds: 500);
 
-final _isWellFormedDate = RegExp(r"\d\d?/\d\d?/\d+");
+final _isWellFormedDate = RegExp(r"\d\d?/\d\d?/\-?\d+");
 
 const TextStyle _hintStyle = TextStyle(fontStyle: FontStyle.italic, fontSize: 11);
 
