@@ -5,6 +5,7 @@ and positioned vertically in timelanes (like swimlanes)
 
 * Show how different events relate to each other relative to time
 * Build visual timelines
+* Create any widget you want to display, including tap-responsive any dynamic widgets
 
 ![](readme-example-1.jpg?raw=true)
 
@@ -31,6 +32,8 @@ the same set of events to work if the timeline's date-range changes (e.g. zoomin
 and places each of these widgets in its timelane horizontally according to its TimeEvent date or date range. The 
 priority value determines which widgets is on top if they overlap. These widgets can have tooltips, mouse reactions,
 URL launchers, etc.
+
+The function `createTimePeriod` is an example of a widget-builder that adjusts itself to the viewport of a timelanes
 ```dart
 aWidget widget = Column(children: [
   Expanded(
