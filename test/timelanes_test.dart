@@ -4,6 +4,8 @@ import 'package:timelanes/timelanes.dart';
 
 void main() {
   testWidgets('Verify add user button present on ActiveUsers page', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(home: Column(children: [Expanded(child: Timelanes(earliestDate: DateTime.now(), latestDate: DateTime.now()))])));
+    await tester.pumpWidget(MaterialApp(
+        home: Container(
+            height: 500, width: 700, child: Column(children: [Expanded(child: Timelanes(earliestDate: DateTime.now(), latestDate: DateTime.now()))]))));
   });
 }
